@@ -1,3 +1,41 @@
+.header {
+  padding: 16px 24px;
+  background-color: cornflowerblue;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
+
+.header-logo {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.header-list {
+  display: flex;
+  align-items: center;
+  margin-left: 40px;
+  gap: 32px;
+  font-weight: bold;
+}
+.runupload {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.rundis {
+  margin-top: 30px;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.runfeels {
+  margin-top: 50px;
+}
 .feels {
   display: flex;
   justify-content: center;
