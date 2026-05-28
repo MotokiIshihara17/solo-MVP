@@ -6,17 +6,32 @@ function createCustomerController(service) {
   };
 
   const distance = async (req, res) => {
-    const result = await service.distance();
+    const userId = req.query.user_id;
+    console.log(userId);
+    const result = await service.distance(userId);
     res.status(200).json(result);
   };
 
   const upload = async (req, res) => {
-    const num = req.body;
-    const result = await service.upload(num);
+    const data = req.body;
+    const result = await service.upload(data);
+    console.log("controllerです", data);
+    // res.status(200).send(num);
+  };
+
+  const create = async (req, res) => {
+    const data = req.body;
+    const result = await service.create(data);
     console.log("controllerです", result);
     // res.status(200).send(num);
   };
 
-  return { distance, upload };
+  const user = async (req, res) => {
+    const result = await service.user();
+    console.log("controllerです", result);
+    res.status(200).send(result);
+  };
+
+  return { distance, upload, create, user };
 }
 export { createCustomerController };

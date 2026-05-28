@@ -1,5 +1,5 @@
 .header {
-  padding: 16px 24px;
+  padding: 0px 24px;
   background-color: cornflowerblue;
   display: grid;
   grid-template-columns: auto 1fr;
@@ -9,6 +9,11 @@
 .header-logo {
   font-weight: bold;
   font-size: 20px;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .header-list {
@@ -28,18 +33,22 @@
 }
 
 .rundis {
-  margin-top: 30px;
+  margin-top: 5px;
   font-weight: bold;
   font-size: 40px;
 }
 
 .runfeels {
-  margin-top: 50px;
+  margin-top: 5px;
+  font-size: 40px;
+  font-weight: bold;
 }
 .feels {
   display: flex;
   justify-content: center;
   gap: 20px;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .feel {
@@ -55,4 +64,8 @@
   flex-direction: column;
   align-items: center;
   width: 100px;
+}
+
+#icon {
+  width: 70px;
 }

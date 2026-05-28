@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
 export function Feeling2({ feel2, setFeel2 }) {
-  const runOk = "/marathon.png";
-  const runMid = "/running.png";
+  const runOk = "/ok.png";
+  const runMid = "/marathon.png";
   const runHigh = "/necchuusyou.png";
   const runStop = "/kyuukyuusya_hansou.png";
 

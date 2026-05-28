@@ -1,41 +1,43 @@
+import { Button } from "@yamada-ui/react";
 import "./App.css";
 import { Feeling1 } from "./components/feeling1";
 import { Feeling2 } from "./components/feeling2";
 import { Feeling3 } from "./components/feeling3";
+import SelectUsers from "./components/select";
+import Header from "./components/header";
 import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 
 function App() {
-  const [distance, setDistance] = useState("");
+  const [distance, setDistance] = useState("0");
   const [feel1, setFeel1] = useState("");
   const [feel2, setFeel2] = useState("");
   const [feel3, setFeel3] = useState("");
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
+    if (!userId) {
+      return;
+    }
     async function loadData() {
-      const response = await fetch("http://localhost:3000/");
+      const response = await fetch(`http://localhost:3000/?user_id=${userId}`);
       const data = await response.json();
-      setDistance(data[0].distance);
-      console.log(data[0].distance);
+      if (data[0].distance === null) {
+        setDistance("0");
+      } else {
+        setDistance(data[0].distance);
+        console.log(data[0].distance);
+      }
     }
     loadData();
-  }, []);
+  }, [userId]);
 
   return (
     <>
-      <header className="header">
-        <h1 className="header-logo">RunApp</h1>
-
-        <nav className="header-nav">
-          <ul className="header-list">
-            <li className="header-item">
-              <Link to="/upload">走行距離入力フォーム</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
+      <Header />
       <div className="runupload">
+        <SelectUsers userId={userId} setUserId={setUserId} />
         <p className="rundis">今月の総走行距離</p>
         <p className="rundis">{distance}km</p>
       </div>

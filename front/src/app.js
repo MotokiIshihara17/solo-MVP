@@ -55,6 +55,10 @@ function buildApp() {
 
   app.post("/upload", customerController.upload);
 
+  app.post("/create", customerController.create);
+
+  app.get("/user", customerController.user);
+
   app.use((req, res) => res.status(404).json({ error: "Not Found" }));
 
   return app;

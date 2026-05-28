@@ -20,6 +20,17 @@
 
 import knexInitializer from "knex";
 
+const startDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+const endDate = new Date(
+  new Date().getFullYear(),
+  new Date().getMonth() + 1,
+  0,
+  23,
+  59,
+  59,
+  999,
+);
+
 function createCustomerRepository(configOrKnex) {
   let knex;
 
@@ -28,20 +39,32 @@ function createCustomerRepository(configOrKnex) {
   } else {
     knex = configOrKnex.default ? configOrKnex.default : configOrKnex;
   }
-  const distance = async () => {
-    const result = await knex("distance").sum("run_distance as distance");
+  const distance = async (userId) => {
+    const result = await knex("distance")
+      .where("id", userId)
+      .whereBetween("run_date", [startDate, endDate])
+      .sum("run_distance as distance");
     return result;
   };
 
   const upload = async (data) => {
     console.log("データだよ", data);
-    const result = await knex("distance")
-      .insert({ id: 1, ...data })
-      .returning("*");
+    const result = await knex("distance").insert(data).returning("*");
     return result;
   };
 
-  return { distance, upload };
+  const create = async (data) => {
+    console.log("データだよ", data);
+    const result = await knex("user_data").insert(data).returning("*");
+    console.log("データお返しします", result);
+    return result;
+  };
+
+  const user = async () => {
+    const result = await knex.select().from("user_data");
+    return result;
+  };
+  return { distance, upload, create, user };
 }
 
 export { createCustomerRepository };
