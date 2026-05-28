@@ -39,3 +39,9 @@
 ![alt text](../docs/run.png)
 
 このような形で見ることができます。
+
+# 走りやすさの表
+
+![alt text](image.png)
+
+![alt text](image-1.png)

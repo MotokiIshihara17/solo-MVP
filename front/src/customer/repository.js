@@ -64,7 +64,16 @@ function createCustomerRepository(configOrKnex) {
     const result = await knex.select().from("user_data");
     return result;
   };
-  return { distance, upload, create, user };
+
+  const rest = async (userId) => {
+    const result = await knex("distance")
+      .where("id", userId)
+      .whereBetween("run_date", [startDate, endDate])
+      .sum("run_distance as distance");
+    return result;
+  };
+
+  return { distance, upload, create, user, rest };
 }
 
 export { createCustomerRepository };

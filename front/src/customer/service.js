@@ -20,7 +20,10 @@ function createCustomerService(repository) {
     return await repository.user();
   };
 
-  return { distance, upload, create, user };
+  const rest = async () => {
+    return await repository.rest();
+  };
+  return { distance, upload, create, user, rest };
 }
 
 export { createCustomerService };

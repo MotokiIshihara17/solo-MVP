@@ -15,8 +15,8 @@ function createCustomerController(service) {
   const upload = async (req, res) => {
     const data = req.body;
     const result = await service.upload(data);
-    console.log("controllerです", data);
-    // res.status(200).send(num);
+    console.log("controllerです", result);
+    // res.status(200).send(resul);
   };
 
   const create = async (req, res) => {
@@ -32,6 +32,11 @@ function createCustomerController(service) {
     res.status(200).send(result);
   };
 
-  return { distance, upload, create, user };
+  const rest = async (req, res) => {
+    const result = await service.rest();
+    res.status(200).json(result);
+  };
+
+  return { distance, upload, create, user, rest };
 }
 export { createCustomerController };

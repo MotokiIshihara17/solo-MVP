@@ -59,6 +59,8 @@ function buildApp() {
 
   app.get("/user", customerController.user);
 
+  app.get("/rest", customerController.rest);
+
   app.use((req, res) => res.status(404).json({ error: "Not Found" }));
 
   return app;
