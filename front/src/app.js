@@ -16,8 +16,6 @@ function buildApp() {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
-  //   const customerController = initCustomer(knex);
-
   const knexInstance = knex.default ? knex.default : knex;
 
   const customerController = initCustomer(knexInstance);
